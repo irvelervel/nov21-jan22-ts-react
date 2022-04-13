@@ -7,13 +7,35 @@ import { Component } from 'react'
 
 interface ClassComponentProps {
   title: string
+  subTitle?: string
 }
 
-class ClassComponent extends Component<ClassComponentProps> {
+interface ClassComponentState {
+  counter: number
+}
+
+class ClassComponent extends Component<
+  ClassComponentProps,
+  ClassComponentState
+> {
+  state: ClassComponentState = {
+    counter: 0,
+  }
+
   render() {
     return (
       <div>
         <h3>{this.props.title}</h3>
+        <p>{this.state.counter}</p>
+        <button
+          onClick={() =>
+            this.setState({
+              counter: this.state.counter + 1,
+            })
+          }
+        >
+          +
+        </button>
       </div>
     )
   }
